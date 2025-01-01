@@ -98,7 +98,13 @@ io.on("connection", (socket)=>{// handle socket connection
 
 
 
-mongoose.connect(URI).then(()=>{
+mongoose.connect(URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Shorter timeout
+  }
+).then(()=>{
             console.log("connected to moongodb")
         }).catch(()=>{
             console.log("error")
