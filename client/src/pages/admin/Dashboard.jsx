@@ -8,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/admin/dashboard",
+        const response = await axios.get("https://npl-news.onrender.com/admin/dashboard",
           {
             withCredentials: true
           }
