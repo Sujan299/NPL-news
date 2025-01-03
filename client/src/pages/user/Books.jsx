@@ -8,7 +8,7 @@ function Books() {
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const response = await axios.get("https://npl-news.onrender.com/books/");
+        const response = await axios.get("http://localhost:3000/books/");
         if (response.status === 200) {
           setBooks(response.data);
         }

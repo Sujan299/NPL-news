@@ -11,7 +11,7 @@ const LoginAdmin = () => {
   const loginAdmin = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post("https://npl-news.onrender.com/admin/login",
+    const response = await axios.post("http://localhost:3000/admin/login",
       {
         username,
         password

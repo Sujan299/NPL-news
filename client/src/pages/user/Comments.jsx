@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import axios from "axios";
 import UserNameAndImage from '../../components/user/UserNameAndImage'
 
-const socket = io("https://npl-news.onrender.com", {
+const socket = io("http://localhost:3000", {
     transports: ["websocket"],
 });
 const Comments = ({ id }) => {
@@ -18,13 +18,13 @@ const Comments = ({ id }) => {
             setUserInfo(userData);
 
             if (userData?.name) {
-                const response = await axios.post("https://npl-news.onrender.com/auth/google", { email: userData.email });
+                const response = await axios.post("http://localhost:3000/auth/google", { email: userData.email });
                 if (response.status === 200) {
                     setUserId(response.data._id);
                 }
             }
             if (userData?.username) {
-                const response = await axios.post("https://npl-news.onrender.com/users/validate_comment", { email: userData.email });
+                const response = await axios.post("http://localhost:3000/users/validate_comment", { email: userData.email });
                 if (response.status === 200) {
                     setUserId(response.data._id);
                 }
@@ -41,7 +41,7 @@ const Comments = ({ id }) => {
 
             const addComment = async () => {
                 try {
-                    const response = await axios.post("https://npl-news.onrender.com/comment", {
+                    const response = await axios.post("http://localhost:3000/comment", {
                         content, user_id: userId,
                         postId: id
                     });
@@ -76,7 +76,7 @@ const Comments = ({ id }) => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`https://npl-news.onrender.com/comment/${id}`);
+                const response = await axios.get(`http://localhost:3000/comment/${id}`);
                 setMessages(response.data);
             } catch (err) {
                 console.error("Error fetching comments:", err);

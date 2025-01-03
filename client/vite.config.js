@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/socket.io": {
-        target: "https://npl-news.onrender.com", // Backend URL
+        target: "http://localhost:3000", // Backend URL
         changeOrigin: true,
         ws: true, // Enable WebSocket proxying
       },

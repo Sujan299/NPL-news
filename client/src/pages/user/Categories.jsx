@@ -8,7 +8,7 @@ function Categories() {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const response = await axios.get("https://npl-news.onrender.com/categories/categories/");
+        const response = await axios.get("http://localhost:3000/categories/categories/");
         if (response.status === 200) {
           setCategories(response.data);
         }
