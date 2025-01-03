@@ -22,7 +22,7 @@ export const get_all_posts = async (req, res) => {
         if (users.length === 0) {
             return res.status(200).json({ message: "No posts found" });
         }
-        res.status(200).json(posts);
+        res.status(200).json(users);
     } catch (err) {
         console.log("Can not get all users", err);
     }

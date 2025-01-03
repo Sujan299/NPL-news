@@ -20,6 +20,12 @@ import commentRoutes from './routes/comment.route.js';
 
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+
+import path from 'path';
+import {fileURLToPath} from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 dotenv.config();
 const app = express();
 
@@ -28,7 +34,7 @@ const server = http.createServer(app);
 const io = new Server(server,
   {
     cors: {
-      origin: "https://npl-news.vercel.app/",
+      origin: "http://localhost:5173",
       methods: ["GET", "POST"],
       credentials: true,
     },
@@ -40,7 +46,7 @@ app.use(express.json());
 app.use(cookieParser()); // it parses incomming cookies from http
 app.use(
     cors({
-      origin: "https://npl-news.vercel.app/",
+      origin: "http://localhost:5173",
       credentials: true,
     })
   );
@@ -95,16 +101,13 @@ io.on("connection", (socket)=>{// handle socket connection
   });
 })
 
+app.use(express.static(path.join(__dirname, '/client/dist')))
+app.get("*", (req, res)=>{
+  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+})
 
 
-
-mongoose.connect(URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000, // Shorter timeout
-  }
-).then(()=>{
+mongoose.connect(URI).then(()=>{
             console.log("connected to moongodb")
         }).catch(()=>{
             console.log("error")
