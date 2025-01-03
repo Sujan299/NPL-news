@@ -21,10 +21,10 @@ import commentRoutes from './routes/comment.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import path from 'path';
-import {fileURLToPath} from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import path from 'path';
+// import {fileURLToPath} from 'url';
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
@@ -101,10 +101,10 @@ io.on("connection", (socket)=>{// handle socket connection
   });
 })
 
-app.use(express.static(path.join(__dirname, '/client/dist')))
-app.get("*", (req, res)=>{
-  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
-})
+// app.use(express.static(path.join(__dirname, '/client/dist')))
+// app.get("*", (req, res)=>{
+//   res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+// })
 
 
 mongoose.connect(URI).then(()=>{
